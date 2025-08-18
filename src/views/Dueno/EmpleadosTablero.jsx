@@ -1,10 +1,10 @@
 import "@assets/CSS/CSS_Gestick.css";
-import Header from "../components/micro_components/Header";
-import HeaderOpcionesAdmin from "../components/micro_components/HeaderOpcionesAdmin.jsx";
+import Header from "@components/micro_components/Header";
+import HeaderOpcionesAdmin from "@components/micro_components/HeaderOpcionesAdmin.jsx";
 import ClockLoader from "react-spinners/ClockLoader";
 import { useEffect, useState } from "react";
 import Session from "react-session-api";
-import { deleteEmpleado, getEmp } from "../../api/gestick.api";
+import { deleteEmpleado, getEmp } from "@/api/gestick.api";
 
 export default function EmpleadosTablero() {
   const [loading, setLoading] = useState(true);

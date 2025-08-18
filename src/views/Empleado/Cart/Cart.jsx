@@ -1,11 +1,11 @@
 import "@assets/CSS/CSS_Gestick.css";
 import { useEffect, useState } from "react";
-import Header from "../../components/micro_components/Header.jsx";
-import Camara from "../../components/micro_components/Camara.jsx";
-import SearchComponent from "../../components/micro_components/SearchComponent";
-import ClockLoader from "react-spinners/ClockLoader";
+import Header from "@components/micro_components/Header.jsx";
+import Camara from "@components/micro_components/Camara.jsx";
+import SearchComponent from "@components/micro_components/SearchComponent";
+// import ClockLoader from "react-spinners/ClockLoader";
 import Session from "react-session-api";
-import { getProducts, procesSale } from "../../../api/gestick.api";
+import { getProducts, procesSale } from "@/api/gestick.api";
 
 ///Lista de productos en el carrito.
 let codeCart = [];

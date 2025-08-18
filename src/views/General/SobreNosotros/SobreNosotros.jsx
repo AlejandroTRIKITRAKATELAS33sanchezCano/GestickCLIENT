@@ -3,7 +3,14 @@ import "@assets/CSS/CSS_Gestick.css";
 //import "../../../../public/CSS/CSS_Gestick.css";
 import ClockLoader from "react-spinners/ClockLoader";
 import { useEffect, useState } from "react";
-import Footer from "../../components/micro_components/Footer";
+import Footer from "@components/micro_components/Footer";
+
+import TitosFoto from "@assets/IMG/Equipo/TitosFoto.jpeg";
+import GaelFoto from "@assets/IMG/Equipo/GaelFoto.jpeg";
+import JoshuaFoto from "@assets/IMG/Equipo/JoshuaFoto.jpeg";
+import CanoFoto from "@assets/IMG/Equipo/CanoFoto.jpeg";
+import RobertoFoto from "@assets/IMG/Equipo/RobertoFoto.jpeg";
+import AdrianFoto from "@assets/IMG/Equipo/AdrianFoto.jpeg";
 
 export default function SobreNosotros() {
   const [loading, setLoading] = useState(false);
@@ -51,10 +58,7 @@ export default function SobreNosotros() {
           <section id="equipo">
             <div className="contenedor">
               <div>
-                <img
-                  src="../IMG/Equipo/TitosFoto.jpeg"
-                  alt="Lopez Lozano Carlos Enrique"
-                />
+                <img src={TitosFoto} alt="Lopez Lozano Carlos Enrique" />
                 <h4>Lopez Lozano Carlos Enrique</h4>
                 <p>Desarrollador Back-end</p>
                 <a href="/" className="saber-mas-S">
@@ -62,10 +66,7 @@ export default function SobreNosotros() {
                 </a>
               </div>
               <div>
-                <img
-                  src="../IMG/Equipo/GaelFoto.jpeg"
-                  alt="Perez Calderon Gael Alejandro"
-                />
+                <img src={GaelFoto} alt="Perez Calderon Gael Alejandro" />
                 <h4>Perez Calderon Gael Alejandro</h4>
                 <p>Documentador</p>
                 <a href="/" className="saber-mas-S">
@@ -73,10 +74,7 @@ export default function SobreNosotros() {
                 </a>
               </div>
               <div>
-                <img
-                  src="../IMG/Equipo/JoshuaFoto.jpeg"
-                  alt="Riveron Martinez Joshua Israel"
-                />
+                <img src={JoshuaFoto} alt="Riveron Martinez Joshua Israel" />
                 <h4>Riveron Martinez Joshua Israel</h4>
                 <p>Documentador</p>
                 <a href="/" className="saber-mas-S">
@@ -84,10 +82,7 @@ export default function SobreNosotros() {
                 </a>
               </div>
               <div>
-                <img
-                  src="../IMG/Equipo/CanoFoto.jpeg"
-                  alt="Sánchez Cano Alejandro"
-                />
+                <img src={CanoFoto} alt="Sánchez Cano Alejandro" />
                 <h4>Sánchez Cano Alejandro</h4>
                 <p>Desarrollador BackEnd y Front-end</p>
                 <a
@@ -97,10 +92,7 @@ export default function SobreNosotros() {
                 </a>
               </div>
               <div>
-                <img
-                  src="../IMG/Equipo/RobertoFoto.jpeg"
-                  alt="Roberto Solis Roberto Carlos"
-                />
+                <img src={RobertoFoto} alt="Roberto Solis Roberto Carlos" />
                 <h4>Roberto Solis Roberto Carlos</h4>
                 <p>Desarrollador Mobile</p>
                 <a href="/" className="saber-mas-S">
@@ -108,10 +100,7 @@ export default function SobreNosotros() {
                 </a>
               </div>
               <div>
-                <img
-                  src="../IMG/Equipo/AdrianFoto.jpeg"
-                  alt="Vazquez Montero Carlos Adrian"
-                />
+                <img src={AdrianFoto} alt="Vazquez Montero Carlos Adrian" />
                 <h4>Vazquez Montero Carlos Adrian</h4>
                 <p>Desarrollador Mobile</p>
                 <a href="/" className="saber-mas-S">
@@ -123,7 +112,6 @@ export default function SobreNosotros() {
         </div>
       )}
       <div className="FooterEmpleado">
-        {" "}
         <Footer />
       </div>
     </section>

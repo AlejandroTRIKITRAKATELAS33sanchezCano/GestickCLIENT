@@ -1,10 +1,10 @@
-import HeaderAdmin from "../components/micro_components/HeaderAdmin";
+import HeaderAdmin from "@components/micro_components/HeaderAdmin";
 import { Link } from "react-router-dom";
-import GestickAdminTable from "../components/micro_components/GestickAdminTable";
-import HeaderOpcionesAdmin from "../components/micro_components/HeaderOpcionesAdmin";
+import GestickAdminTable from "@components/micro_components/GestickAdminTable";
+import HeaderOpcionesAdmin from "@components/micro_components/HeaderOpcionesAdmin";
 import ClockLoader from "react-spinners/ClockLoader";
 import { useEffect, useState } from "react";
-import FooterAdmin from "../components/micro_components/FooterAdmin";
+import FooterAdmin from "@components/micro_components/FooterAdmin";
 
 export default function GestickAdmin() {
   const [loading, setLoading] = useState(false);

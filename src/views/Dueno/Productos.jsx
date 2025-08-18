@@ -1,18 +1,18 @@
-import HeaderPro from "../components/micro_components/HeaderPro.jsx";
+import HeaderPro from "@components/micro_components/HeaderPro.jsx";
 import ClockLoader from "react-spinners/ClockLoader";
 import { useEffect, useState } from "react";
 import Session from "react-session-api";
-import CamaraP from "../components/micro_components/Scanner/CamaraP.jsx";
+import CamaraP from "@components/micro_components/Scanner/CamaraP.jsx";
 import { Formik } from "formik";
+import Uploader from "@components/micro_components/Uploader.jsx";
+import { useParams } from "react-router-dom";
 import {
+  modifyProduct,
+  getTradeMark,
   addProduct,
   getAProduct,
   uploadImage,
-} from "../../api/gestick.api.js";
-import Uploader from "../components/micro_components/Uploader.jsx";
-import { useParams } from "react-router-dom";
-import { getTradeMark } from "../../api/gestick.api.js";
-import { modifyProduct } from "../../api/gestick.api.js";
+} from "@/api/gestick.api.js";
 import * as yup from "yup";
 import { Box, Button, TextField, Autocomplete } from "@mui/material";
 
@@ -91,8 +91,16 @@ export default function Productos() {
   }, []);
 
   const checkoutSchema = yup.object().shape({
-    idAdmin: yup.string().required("Campo Obligatorio").min(6, `Ingresa Un ID Completo`).max(6, `Ingresa Un ID De 6 Digitos`),
-    password: yup.string().required("Campo Obligatorio").min(8, `Ingresa Más De 7 Digitos`).max(150, `Ingresa Una Contraseña Valida`),
+    idAdmin: yup
+      .string()
+      .required("Campo Obligatorio")
+      .min(6, `Ingresa Un ID Completo`)
+      .max(6, `Ingresa Un ID De 6 Digitos`),
+    password: yup
+      .string()
+      .required("Campo Obligatorio")
+      .min(8, `Ingresa Más De 7 Digitos`)
+      .max(150, `Ingresa Una Contraseña Valida`),
   });
 
   if (Session.get("type") == 1) {
@@ -109,8 +117,7 @@ export default function Productos() {
             <Formik
               enableReinitialize
               initialValues={initialValues}
-              onSubmit={handleFormSubmit}
-            >
+              onSubmit={handleFormSubmit}>
               {({ values, setFieldValue, handleSubmit, handleChange }) => (
                 <form onSubmit={handleSubmit}>
                   <input
@@ -122,15 +129,13 @@ export default function Productos() {
                     <section className="NavProductoInfo">
                       <label
                         htmlFor="TituloEstadoDelProducto"
-                        className="TituloContenedorPropiedadesDelProducto"
-                      >
+                        className="TituloContenedorPropiedadesDelProducto">
                         Propiedades del producto{" "}
                       </label>
                       <div className="nombreProductoContent">
                         <label
                           htmlFor="NombreProducto"
-                          className="TITULONOMBRE"
-                        >
+                          className="TITULONOMBRE">
                           Nombre Del Producto:{" "}
                         </label>
                         <input
@@ -148,8 +153,7 @@ export default function Productos() {
                         <div class="form-group">
                           <label
                             htmlFor="DescripcionPro"
-                            className="TITULONOMBRE"
-                          >
+                            className="TITULONOMBRE">
                             Descripción Del Producto:{" "}
                           </label>
                           <textarea
@@ -168,15 +172,13 @@ export default function Productos() {
                     <section className="EstadoDelProducto">
                       <label
                         htmlFor="TituloEstadoDelProducto"
-                        className="TituloContenedorPropiedadesDelProducto"
-                      >
+                        className="TituloContenedorPropiedadesDelProducto">
                         Caracteristicas del producto
                       </label>
                       <div className="nombreProductoContentSelect">
                         <label
                           htmlFor="TituloEstadoDelProducto"
-                          className="TITULONOMBRE"
-                        >
+                          className="TITULONOMBRE">
                           Estado Del Producto:{" "}
                         </label>
                         <div className="selectBonito">
@@ -184,8 +186,7 @@ export default function Productos() {
                             name="status"
                             id="EstadoDelProducto"
                             value={values.status}
-                            onChange={handleChange}
-                          >
+                            onChange={handleChange}>
                             <option value={true}>Activo</option>
                             <option value={false}>Inactivo</option>
                           </select>
@@ -194,8 +195,7 @@ export default function Productos() {
                       <div className="nombreProductoContent">
                         <label
                           htmlFor="TituloEstadoDelProducto"
-                          className="TITULONOMBRE"
-                        >
+                          className="TITULONOMBRE">
                           Precio:{" "}
                         </label>
                         <input
@@ -215,8 +215,7 @@ export default function Productos() {
                       <div className="nombreProductoContent">
                         <label
                           htmlFor="TituloEstadoDelProducto"
-                          className="TituloContenedorPropiedadesDelProducto"
-                        >
+                          className="TituloContenedorPropiedadesDelProducto">
                           Elementos multimedia
                         </label>
                         <div className="contenedroAgregar">
@@ -230,16 +229,14 @@ export default function Productos() {
                       <div className="ContenedorOrganizacionDelProducto">
                         <label
                           htmlFor="TituloEstadoDelProducto"
-                          className="TituloContenedorPropiedadesDelProductoO"
-                        >
+                          className="TituloContenedorPropiedadesDelProductoO">
                           Organizacion del producto{" "}
                         </label>
                       </div>
                       <div className="CategoriaDelProducto ">
                         <label
                           for="TituloEstadoDelProducto"
-                          className="TITULONOMBREO"
-                        >
+                          className="TITULONOMBREO">
                           Categoria:{" "}
                         </label>
                         <input
@@ -257,11 +254,10 @@ export default function Productos() {
                       <div className="PrecioVentaContenedor">
                         <label
                           for="TituloEstadoDelProducto"
-                          className="TITULONOMBREO"
-                        >
+                          className="TITULONOMBREO">
                           Marca:{" "}
                         </label>
-                        
+
                         <select
                           type="text"
                           class="form-control-P"
@@ -271,8 +267,7 @@ export default function Productos() {
                           placeholder="Ejemplo: Pelikan"
                           defaultValue={idProduct ? initialValues.tradeMark : 1}
                           value={values.tradeMark}
-                          onChange={handleChange}
-                        >
+                          onChange={handleChange}>
                           <option selected="true" disabled="disabled">
                             Seleccione Marca
                           </option>
@@ -280,14 +275,11 @@ export default function Productos() {
                             <option value={row.idMarca}>{row.MarNombre}</option>
                           ))}
                         </select>
-                        
-
                       </div>
                       <div className="PrecioVentaContenedor">
                         <label
                           for="TituloEstadoDelProducto"
-                          className="TITULONOMBREO"
-                        >
+                          className="TITULONOMBREO">
                           Existencias:{" "}
                         </label>
                         <input
@@ -307,8 +299,7 @@ export default function Productos() {
                       <div className="ProductCamara">
                         <label
                           htmlFor="TituloEstadoDelProducto"
-                          className="TituloContenedorPropiedadesDelProductoO"
-                        >
+                          className="TituloContenedorPropiedadesDelProductoO">
                           Codigo de Barras
                         </label>
                         <CamaraP />

@@ -1,11 +1,11 @@
-import Header from "../components/micro_components/Header.jsx";
-import TableroCard from "../components/micro_components/TableroCard.jsx";
-import Avatar from "../components/SoporteTECNICO/Admin/Avatar.jsx";
+import Header from "@components/micro_components/Header.jsx";
+import TableroCard from "@components/micro_components/TableroCard.jsx";
+// import Avatar from "@components/SoporteTECNICO/Admin/Avatar.jsx";
 import Session from "react-session-api";
 import ClockLoader from "react-spinners/ClockLoader";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import SupportWindow from "../components/SoporteTECNICO/Admin/Dueno/index.jsx";
+// import SupportWindow from "@components/SoporteTECNICO/Admin/Dueno/index.jsx";
 
 export default function Tablero() {
   const [loading, setLoading] = useState(true);

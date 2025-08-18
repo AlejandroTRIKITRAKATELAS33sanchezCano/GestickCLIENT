@@ -19,10 +19,10 @@ import { AdminsContextPrvider } from "./context/adminsContext.jsx";
 import Cart from "./views/Empleado/Cart/Cart.jsx";
 import SobreNosotros from "./views/General/SobreNosotros/SobreNosotros.jsx";
 import Session from "react-session-api";
-import VistaPDF from "./views/components/PDF/VistaPDF.jsx";
-import SupportAdmin from "./views/components/SoporteTECNICO/Admin/Soporte/index.jsx";
-import SupportGestick from "./views/components/SoporteTECNICO/Admin/Soporte/SupportGestick.jsx";
-import SupportEngine from "./views/components/SoporteTECNICO/SupportEngine.jsx";
+import VistaPDF from "@components/PDF/VistaPDF.jsx";
+import SupportAdmin from "@components/SoporteTECNICO/Admin/Soporte/index.jsx";
+import SupportGestick from "@components/SoporteTECNICO/Admin/Soporte/SupportGestick.jsx";
+// import SupportEngine from "@components/SoporteTECNICO/SupportEngine.jsx";
 
 export default function App() {
   Session.config(true);

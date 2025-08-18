@@ -1,11 +1,11 @@
 import "@assets/CSS/CSS_Gestick.css";
-import Header from "../components/micro_components/Header";
-import CardsProducto from "../components/micro_components/CardsProducto";
-import HeaderOpcionesAdmin from "../components/micro_components/HeaderOpcionesAdmin";
+import Header from "@components/micro_components/Header";
+// import CardsProducto from "@components/micro_components/CardsProducto";
+import HeaderOpcionesAdmin from "@components/micro_components/HeaderOpcionesAdmin";
 import ClockLoader from "react-spinners/ClockLoader";
 import { useEffect, useState } from "react";
 import Session from "react-session-api";
-import { deleteProduct, getProducts } from "../../api/gestick.api";
+import { deleteProduct, getProducts } from "@/api/gestick.api";
 
 export default function Inventario() {
   const [loading, setLoading] = useState(true);

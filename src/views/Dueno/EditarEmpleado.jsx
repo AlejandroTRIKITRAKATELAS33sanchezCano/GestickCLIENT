@@ -1,5 +1,5 @@
 import "@assets/CSS/CSS_Gestick.css";
-import Header from "../components/micro_components/Header";
+import Header from "@components/micro_components/Header";
 import Form from "./Form";
 import ClockLoader from "react-spinners/ClockLoader";
 import { useEffect, useState } from "react";

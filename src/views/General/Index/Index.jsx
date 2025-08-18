@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import ClockLoader from "react-spinners/ClockLoader";
 
 // Importa todas las imágenes usando alias
+
 import Negocio from "@assets/IMG/Decoration/negocio.webp";
 import Cliente1 from "@assets/IMG/Decoration/Cliente_1.webp";
 import Cliente2 from "@assets/IMG/Decoration/Cliente_2.webp";

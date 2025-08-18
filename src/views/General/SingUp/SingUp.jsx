@@ -2,12 +2,12 @@ import "@assets/CSS/CSS_Gestick.css";
 import * as yup from "yup";
 import { Box, Button, TextField } from "@mui/material";
 import { Form, Formik } from "formik";
-import { createAdminRequest } from "../../../api/gestick.api";
+import { createAdminRequest } from "@/api/gestick.api";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useAdmins } from "../../../context/adminsContext.jsx";
+import { useAdmins } from "@/context/adminsContext.jsx";
 import ClockLoader from "react-spinners/ClockLoader";
-import Footer from "../../components/micro_components/Footer";
+import Footer from "@components/micro_components/Footer";
 
 export default function SingUp() {
   const [loading, setLoading] = useState(true);

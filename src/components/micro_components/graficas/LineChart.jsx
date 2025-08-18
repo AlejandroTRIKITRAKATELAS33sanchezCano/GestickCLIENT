@@ -1,22 +1,26 @@
 import { ResponsiveLine } from "@nivo/line";
 import { useTheme } from "@mui/material";
-import { tokens } from "../../../theme/theme.js";
+import { tokens } from "@views/theme/theme.js";
 import { useEffect, useState } from "react";
 import ClockLoader from "react-spinners/ClockLoader.js";
 
-const LineChart = ({ isCustomLineColors = false, isDashboard = false, data }) => {
+const LineChart = ({
+  isCustomLineColors = false,
+  isDashboard = false,
+  data,
+}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  console.log(data)
+  console.log(data);
 
-  if(data === undefined){
-    return(
+  if (data === undefined) {
+    return (
       <div className="contenedorCarga2">
-          <ClockLoader color="#01a7c2" size={100}/>
+        <ClockLoader color="#01a7c2" size={100} />
       </div>
-    )
-  }else{
+    );
+  } else {
     return (
       <ResponsiveLine
         data={data}
