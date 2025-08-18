@@ -1,0 +1,60 @@
+{
+  "anno": 2023,
+  "mes": 11,
+  "dia": 15,
+  "productosVendidosACTUALES": 125,
+  "porcentajeVENTAACTUAL": 18.5,
+  "totalactual": 42,
+  "porcentajeACTUAL": 12.3,
+  "gananciasACTUALES": 28450.75,
+  "dataLINE": [
+    { "fecha": "2023-11-01", "ventas": 12000 },
+    { "fecha": "2023-11-02", "ventas": 8500 },
+    { "fecha": "2023-11-03", "ventas": 15000 },
+    { "fecha": "2023-11-04", "ventas": 9800 },
+    { "fecha": "2023-11-05", "ventas": 21000 },
+    { "fecha": "2023-11-06", "ventas": 17500 },
+    { "fecha": "2023-11-07", "ventas": 22000 }
+  ],
+  "historialCARRITO": [
+    {
+      "txId": "01-011523",
+      "user": "Juan Pérez",
+      "date": "2023-11-15 10:30",
+      "cost": 1250.50,
+      "productos": [
+        {
+          "nombre": "Laptop Gamer",
+          "cantidad": 1,
+          "precio": 1250.50
+        }
+      ]
+    },
+    {
+      "txId": "01-011524",
+      "user": "María García",
+      "date": "2023-11-15 11:45",
+      "cost": 850.00,
+      "productos": [
+        {
+          "nombre": "Monitor 24\"",
+          "cantidad": 2,
+          "precio": 425.00
+        }
+      ]
+    },
+    {
+      "txId": "01-011525",
+      "user": "Empresa XYZ",
+      "date": "2023-11-15 14:20",
+      "cost": 4200.75,
+      "productos": [
+        {
+          "nombre": "Impresora Laser",
+          "cantidad": 3,
+          "precio": 1400.25
+        }
+      ]
+    }
+  ]
+}

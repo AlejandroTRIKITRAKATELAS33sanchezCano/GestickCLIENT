@@ -12,8 +12,13 @@ import Footer from "@components/micro_components/Footer";
 export default function SingUp() {
   const [loading, setLoading] = useState(true);
 
-  window.addEventListener("load", () => setLoading(false));
-  console.log(loading);
+  useEffect(() => {
+    setLoading(true);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const showModal = (event) => {
     const modal = document.querySelector(".modal");
@@ -333,7 +338,6 @@ export default function SingUp() {
         </section>
       )}
       <div className="FooterEmpleado">
-        {" "}
         <Footer />
       </div>
     </section>

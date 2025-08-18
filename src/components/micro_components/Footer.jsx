@@ -2,37 +2,36 @@ import "@assets/CSS/CSS_Gestick.css";
 
 export default function Footer() {
   return (
-    <footer class="footerG">
-      <div class="containerTop">
-        <div class="row">
-          <div class="col1">
+    <footer className="footerG">
+      <div className="containerTop">
+        <div className="row">
+          <div className="col1">
             <div className="footer-col-G">
-              <h5 class="TituloFooter">Encuentranos</h5>
+              <h5 className="TituloFooter">Encuentranos</h5>
             </div>
-            <p class="DescripcionFooter">
-              {" "}
+            <p className="DescripcionFooter">
               "Gestick Management System S.A." es una empresa dedicada al
               desarrollo del software con un equipo especializado en
               programacion
             </p>
             <p>
-              <i class="fa fa-location-arrow"></i> Av. Luis Enrique Erro S/N,
-              Unidad Profesional Adolfo López Mateos, Zacatenco, Alcaldía
+              <i className="fa fa-location-arrow"></i> Av. Luis Enrique Erro
+              S/N, Unidad Profesional Adolfo López Mateos, Zacatenco, Alcaldía
               Gustavo A. Madero, C.P. 07738, Ciudad de México.{" "}
             </p>
             <p>
-              <i class="fa fa-phone"></i> +52 55 38 18 53 99
+              <i className="fa fa-phone"></i> +52 55 38 18 53 99
             </p>
             <p>
-              <i class="fa fa fa-envelope"></i> Gestick@gmail.com{" "}
+              <i className="fa fa fa-envelope"></i> Gestick@gmail.com{" "}
             </p>
           </div>
 
-          <div class="col2">
+          <div className="col2">
             <div className="footer-col-G">
-              <h5 class="TituloFooter">Paginas</h5>
+              <h5 className="TituloFooter">Paginas</h5>
             </div>
-            <ul class="footerG_ul_amrc">
+            <ul className="footerG_ul_amrc">
               <li>
                 <a href="#">Inicio</a>
               </li>
@@ -50,14 +49,14 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <div class="col4">
+          <div className="col4">
             <div className="footer-col-G">
-              <h5 class="TituloFooter">Siguenos en</h5>
+              <h5 className="TituloFooter">Siguenos en</h5>
             </div>
-            <ul class="footerG_ul2_amrc">
+            <ul className="footerG_ul2_amrc">
               <li>
                 <a href="#">
-                  <i class="fab fa-twitter fleft padding-right"></i>{" "}
+                  <i className="fab fa-twitter fleft padding-right"></i>{" "}
                 </a>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing...
@@ -66,7 +65,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="#">
-                  <i class="fab fa-twitter fleft padding-right"></i>{" "}
+                  <i className="fab fa-twitter fleft padding-right"></i>{" "}
                 </a>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing...
@@ -75,7 +74,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="#">
-                  <i class="fab fa-twitter fleft padding-right"></i>{" "}
+                  <i className="fab fa-twitter fleft padding-right"></i>{" "}
                 </a>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing...
@@ -87,19 +86,19 @@ export default function Footer() {
         </div>
       </div>
 
-      <div class="containerG bottom">
-        <p class="text-center">
+      <div className="containerG bottom">
+        <p className="text-center">
           Copyright @2022 | Diseñado con el 💙 por <a href="/">Gestick</a>
         </p>
-        <ul class="social_footerG_ul">
+        <ul className="social_footerG_ul">
           <li>
             <a href="https://www.facebook.com/profile.php?id=100091645518649">
-              <i class="fab fa-facebook-f"></i>
+              <i className="fab fa-facebook-f"></i>
             </a>
           </li>
           <li>
             <a href="https://instagram.com/__gestick?igshid=OTJhZDVkZWE=">
-              <i class="fab fa-instagram"></i>
+              <i className="fab fa-instagram"></i>
             </a>
           </li>
         </ul>

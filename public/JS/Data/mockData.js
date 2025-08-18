@@ -1,4 +1,4 @@
-import { tokens } from "../../../src/views/theme/theme";
+import { tokens } from "@views/theme/theme";
 
 export const mockDataTeam = [
   {

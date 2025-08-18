@@ -8,34 +8,19 @@ import Session from "react-session-api";
 import FooterDueno from "@components/micro_components/FooterDueno.jsx";
 import { dashboardDUENNO } from "@/api/gestick.api.js";
 
+import TableValues from "@/api/tableValues.json";
+
 export default function EstadoGeneralAdmin() {
   const [loading, setLoading] = useState(true);
-  const [table, setTable] = useState({
-    anno: 0,
-    mes: 0,
-    dia: 0,
-    productosVendidosACTUALES: 0,
-    porcentajeVENTAACTUAL: 0,
-    totalactual: 0,
-    porcentajeACTUAL: 0,
-    gananciasACTUALES: 0,
-    dataLINE: [],
-    historialCARRITO: [],
-  });
+  const [table, setTable] = useState(null);
 
   useEffect(() => {
-    dashboardDUENNO({ idAdmin: Session.get("id") }).then((results) => {
-      setTable(results.data);
-      console.log(results.data);
-    });
-
-    if (document.readyState === "complete") {
+    setLoading(true);
+    const timer = setTimeout(() => {
       setLoading(false);
-    }
+    }, 1000);
+    return () => clearTimeout(timer);
   }, []);
-
-  window.addEventListener("load", () => setLoading(false));
-  console.log(loading);
 
   const [userProduct, setUserProduct] = useState({
     labels: UserProduct.map((data) => data.Productos_idProductos),
@@ -47,27 +32,23 @@ export default function EstadoGeneralAdmin() {
     ],
   });
 
-  if (Session.get("type") == 1) {
-    return (
-      <section>
-        {loading ? (
-          <div className="contenedorCarga">
-            <ClockLoader color="#01a7c2" size={100} loading={loading} />
-          </div>
-        ) : (
-          <section>
-            <Header />
-            <section className="Tableros-General">
-              <Dashboard results={table} />
-            </section>
-          </section>
-        )}
-        <div className="FooterDueno">
-          <FooterDueno />
+  return (
+    <section>
+      {loading ? (
+        <div className="contenedorCarga">
+          <ClockLoader color="#01a7c2" size={100} loading={loading} />
         </div>
-      </section>
-    );
-  } else {
-    window.location.href = "http://localhost:5173/loginAdministrador";
-  }
+      ) : (
+        <section>
+          <Header />
+          <section className="Tableros-General">
+            <Dashboard results={TableValues} />
+          </section>
+        </section>
+      )}
+      <div className="FooterDueno">
+        <FooterDueno />
+      </div>
+    </section>
+  );
 }

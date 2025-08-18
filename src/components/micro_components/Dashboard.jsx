@@ -1,95 +1,79 @@
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
-import { tokens } from "@views/theme/theme.js";
-import { mockTransactions } from "../../../public/JS/Data/mockData";
-import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
-// import EmailIcon from "@mui/icons-material/Email";
-import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-// import TrafficIcon from "@mui/icons-material/Traffic";
-import LineChart from "./graficas/LineChart.jsx";
-// import GeographyChart from "./graficas/GeographyChart";
-// import BarChart from "./graficas/BarChart";
-import StatBox from "./graficas/StatBox";
-// import ProgressCircle from "./graficas/ProgressCircle";
-import DashboardPDF from "@components/PDF/DashboardPDF.jsx";
-import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
-import toast, { Toaster } from "react-hot-toast";
-import { dashboardDUENNO } from "@/api/gestick.api.js";
-import Session from "react-session-api";
 import { useEffect, useState } from "react";
 import ClockLoader from "react-spinners/ClockLoader";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { tokens } from "@views/theme/theme.js";
+import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
+import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import DashboardPDF from "@components/PDF/DashboardPDF.jsx";
+import TableValues from "@/api/tableValues.json";
+import LineChart from "./graficas/LineChart.jsx";
+import StatBox from "./graficas/StatBox";
+// import TrafficIcon from "@mui/icons-material/Traffic";
+// import GeographyChart from "./graficas/GeographyChart";
+// import BarChart from "./graficas/BarChart";
+// import ProgressCircle from "./graficas/ProgressCircle";
+// import EmailIcon from "@mui/icons-material/Email";
 
 const Dashboard = (props) => {
-  const [dashData, setDashData] = useState({});
-  console.log(dashData);
+  const [dashData, setDashData] = useState({
+    dataLINE: [],
+    historialCARRITO: [],
+  });
+  const [mesString, setMesString] = useState("");
+  const getMonthName = (month) => {
+    const months = [
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre",
+    ];
+    return months[month - 1] || "";
+  };
 
-  let mesString = "";
+  useEffect(() => {
+    const initialData = props?.results || TableValues;
 
-  switch (props.results.mes) {
-    case 1:
-      mesString = "Enero";
-      break;
+    const nivoLineData = initialData.dataLINE
+      ? [
+          {
+            id: "Ventas",
+            color: colors.greenAccent[500],
+            data: initialData.dataLINE.map((item) => ({
+              x: item.fecha,
+              y: item.ventas,
+            })),
+          },
+        ]
+      : [{ id: "Ventas", data: [], color: colors.greenAccent[500] }];
 
-    case 2:
-      mesString = "Febrero";
-      break;
+    setDashData({
+      ...initialData,
+      dataLINE: nivoLineData,
+      historialCARRITO: initialData.historialCARRITO || [],
+    });
 
-    case 3:
-      mesString = "Marzo";
-      break;
-
-    case 4:
-      mesString = "Abril";
-      break;
-
-    case 5:
-      mesString = "Mayo";
-      break;
-
-    case 6:
-      mesString = "Junio";
-      break;
-
-    case 7:
-      mesString = "Julio";
-      break;
-
-    case 8:
-      mesString = "Agosto";
-      break;
-
-    case 9:
-      mesString = "Septiembre";
-      break;
-
-    case 10:
-      mesString = "Octubre";
-      break;
-
-    case 11:
-      mesString = "Noviembre";
-      break;
-
-    case 12:
-      mesString = "Diciembre";
-      break;
-  }
-
-  console.log(props.results);
+    const ms = getMonthName(initialData.mes);
+    setMesString(ms);
+  }, [props?.results]);
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  useEffect(() => {
-    dashboardDUENNO({ idAdmin: Session.get("id") }).then((results) =>
-      setDashData(results.data)
-    );
-  }, []);
+  console.log(dashData);
   return (
     <Box m="20px">
-      {console.log(dashData.dataLINE)}
-
-      {dashData.dataLINE.lenght > 0 || dashData.historialCARRITO.lenght > 0 ? (
+      {dashData?.dataLINE?.lenght <= 0 ||
+      dashData?.historialCARRITO?.lenght <= 0 ? (
         <section className="Tableros">
           <h1>Antes de ver tu dashboard debes de vender algo</h1>
         </section>
@@ -108,10 +92,10 @@ const Dashboard = (props) => {
             alignItems="center"
             justifyContent="center">
             <StatBox
-              title={props.results.productosVendidosACTUALES}
+              title={dashData.productosVendidosACTUALES}
               subtitle="Ventas Obtenidas"
-              progress={props.results.porcentajeVENTAACTUAL / 100}
-              increase={props.results.porcentajeVENTAACTUAL + "%"}
+              progress={dashData.porcentajeVENTAACTUAL / 100}
+              increase={dashData.porcentajeVENTAACTUAL + "%"}
               icon={
                 <PointOfSaleIcon
                   sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -126,10 +110,10 @@ const Dashboard = (props) => {
             alignItems="center"
             justifyContent="center">
             <StatBox
-              title={props.results.totalactual}
+              title={dashData.totalactual}
               subtitle="Clientes Nuevos: "
-              progress={props.results.porcentajeACTUAL / 100}
-              increase={"  " + props.results.porcentajeACTUAL + "%"}
+              progress={dashData.porcentajeACTUAL / 100}
+              increase={"  " + dashData.porcentajeACTUAL + "%"}
               icon={
                 <PersonAddIcon
                   sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
@@ -159,7 +143,7 @@ const Dashboard = (props) => {
                   variant="h3"
                   fontWeight="bold"
                   color={colors.greenAccent[500]}>
-                  ${props.results.gananciasACTUALES}
+                  ${dashData.gananciasACTUALES}
                 </Typography>
               </Box>
               <Box>
@@ -199,8 +183,8 @@ const Dashboard = (props) => {
               </Typography>
             </Box>
 
-            {dashData.historialCARRITO ? (
-              dashData.historialCARRITO.map((transaction, i) => (
+            {dashData?.historialCARRITO ? (
+              dashData?.historialCARRITO?.map((transaction, i) => (
                 <Box
                   key={`${transaction.txId}-${i}`}
                   display="flex"
