@@ -1,5 +1,5 @@
+import "@assets/CSS/CSS_Gestick.css";
 import Header from "../components/micro_components/Header";
-import "../../../public/CSS/CSS_Gestick.css";
 import CardsProducto from "../components/micro_components/CardsProducto";
 import HeaderOpcionesAdmin from "../components/micro_components/HeaderOpcionesAdmin";
 import ClockLoader from "react-spinners/ClockLoader";
@@ -59,16 +59,17 @@ export default function Inventario() {
                       </p>
                     </div>
                     <div className="stars">
-                      <a className="saber-mas-P" href={`/EditarProducto/${row.idProductos}`}>
+                      <a
+                        className="saber-mas-P"
+                        href={`/EditarProducto/${row.idProductos}`}>
                         Editar
                       </a>
                       <a
                         className="saber-mas-P"
                         onClick={() => {
-                          deleteProduct({idProductos: row.idProductos});
+                          deleteProduct({ idProductos: row.idProductos });
                           setTimeout(updateData, 150);
-                        }}
-                      >
+                        }}>
                         Borrar
                       </a>
                     </div>

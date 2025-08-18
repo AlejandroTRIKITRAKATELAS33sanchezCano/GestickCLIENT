@@ -1,5 +1,5 @@
+import "@assets/CSS/CSS_Gestick.css";
 import { useEffect, useState } from "react";
-import "../../../../public/CSS/CSS_Gestick.css";
 import Header from "../../components/micro_components/Header.jsx";
 import Camara from "../../components/micro_components/Camara.jsx";
 import SearchComponent from "../../components/micro_components/SearchComponent";
@@ -99,16 +99,14 @@ function Cart() {
                 carrito.map((item) => (
                   <li
                     className="list-group-item text-right"
-                    key={item.idProductos}
-                  >
+                    key={item.idProductos}>
                     {item.PrNombre} X {item.quant} - ${item.PrPrecio}
                     <button
                       id="btnCarrito"
                       className="btn-remover"
                       onClick={() => {
                         renderCart(item, false);
-                      }}
-                    >
+                      }}>
                       X
                     </button>
                   </li>
@@ -129,7 +127,9 @@ function Cart() {
                   carrito,
                   total: totalPrice(),
                   id: Session.get("id"),
-                  idAdmin: Session.get(Session.get("type") == 1 ? "id" : "idAdmin"),
+                  idAdmin: Session.get(
+                    Session.get("type") == 1 ? "id" : "idAdmin"
+                  ),
                 });
                 if (data.message) {
                   console.log(data.error);
@@ -139,8 +139,7 @@ function Cart() {
                   setCarrito([]);
                   setTimeout(updateData, 30);
                 }
-              }}
-            >
+              }}>
               Vender
             </button>
             <button
@@ -149,14 +148,21 @@ function Cart() {
               onClick={() => {
                 codeCart.splice(0, codeCart.length);
                 setCarrito([]);
-              }}
-            >
+              }}>
               Cancelar todo
             </button>
           </aside>
 
           <main id="items" className="col-sm-8 row">
-            {table.length === 0?(<h1>No hay ningún producto registrado en el inventario</h1>):<SearchComponent renderCart={renderCart} baseDeDatos={table} getExistences={getExistences}/>}
+            {table.length === 0 ? (
+              <h1>No hay ningún producto registrado en el inventario</h1>
+            ) : (
+              <SearchComponent
+                renderCart={renderCart}
+                baseDeDatos={table}
+                getExistences={getExistences}
+              />
+            )}
           </main>
           <aside>
             <div className="camara">

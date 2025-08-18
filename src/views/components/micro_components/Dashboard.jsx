@@ -104,7 +104,7 @@ const Dashboard = (props) => {
         <Box m="20px">
             {console.log(dashData.dataLINE)}
 
-            {dashData.dataLINE === [] || dashData.historialCARRITO === [] ? (
+            {dashData.dataLINE.lenght > 0 || dashData.historialCARRITO.lenght > 0 ? (
 
                 
                 
