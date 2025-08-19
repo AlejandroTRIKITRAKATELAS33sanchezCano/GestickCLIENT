@@ -1,6 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
-import Uploader from "../components/micro_components/Uploader";
+import Uploader from "@components/micro_components/Uploader";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {
@@ -22,15 +22,35 @@ const Form = () => {
     address1: "",
     address2: "",
     img: undefined,
-    idAdmin:Session.get("id")
+    idAdmin: Session.get("id"),
   });
 
   const checkoutSchema = yup.object().shape({
-    firstName: yup.string().required("requerido").min(3, `Ingresa Un Nombre Valido`).max(45, `Tu Nombre Es Demasiado Largo`),
-    lastNameP: yup.string().required("requerido").min(3, `Ingresa Un Apellido Valido`).max(45, `Tu Apellido Es Demasiado Largo`),
-    lastNameM: yup.string().required("requerido").min(3, `Ingresa Un Apellido Valido`).max(45, `Tu Apellido Es Demasiado Largo`),
-    address1: yup.string().required("requerido").min(10, `Ingresa Una Dirección valida`).max(500, `Tu Dirección Es Demasiada Larga`),
-    address2: yup.string().required("requerido").min(10, `Ingresa Una Dirección valida`).max(500, `Tu Dirección Es Demasiada Larga`),
+    firstName: yup
+      .string()
+      .required("requerido")
+      .min(3, `Ingresa Un Nombre Valido`)
+      .max(45, `Tu Nombre Es Demasiado Largo`),
+    lastNameP: yup
+      .string()
+      .required("requerido")
+      .min(3, `Ingresa Un Apellido Valido`)
+      .max(45, `Tu Apellido Es Demasiado Largo`),
+    lastNameM: yup
+      .string()
+      .required("requerido")
+      .min(3, `Ingresa Un Apellido Valido`)
+      .max(45, `Tu Apellido Es Demasiado Largo`),
+    address1: yup
+      .string()
+      .required("requerido")
+      .min(10, `Ingresa Una Dirección valida`)
+      .max(500, `Tu Dirección Es Demasiada Larga`),
+    address2: yup
+      .string()
+      .required("requerido")
+      .min(10, `Ingresa Una Dirección valida`)
+      .max(500, `Tu Dirección Es Demasiada Larga`),
   });
 
   const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -40,7 +60,7 @@ const Form = () => {
     try {
       if (idEmpleado) {
         values.id = parseInt(idEmpleado);
-        if(values.img != initialValues.img){
+        if (values.img != initialValues.img) {
           const data = new FormData();
           data.append("file", values.img);
           data.append("upload_preset", "gestick");
@@ -81,7 +101,7 @@ const Form = () => {
           address1: data.EmDireccion1,
           address2: data.EmDireccion2,
           img: data.EmURLimg,
-          idAdmin: Session.get("idAdmin")
+          idAdmin: Session.get("idAdmin"),
         });
       });
     }
@@ -93,8 +113,7 @@ const Form = () => {
         enableReinitialize
         onSubmit={handleFormSubmit}
         initialValues={initialValues}
-        validationSchema={checkoutSchema}
-      >
+        validationSchema={checkoutSchema}>
         {({
           values,
           errors,
@@ -120,8 +139,7 @@ const Form = () => {
                         "& > div": {
                           gridColumn: isNonMobile ? undefined : "span 4",
                         },
-                      }}
-                    >
+                      }}>
                       <TextField
                         fullWidth
                         variant="filled"
@@ -195,7 +213,9 @@ const Form = () => {
                     </Box>
                     <Box display="flex" justifyContent="end" mt="20px">
                       <Button type="submit" color="primary" variant="contained">
-                      {idEmpleado ? "Editar Empleado.":"Crear Nuevo Empleado"}
+                        {idEmpleado
+                          ? "Editar Empleado."
+                          : "Crear Nuevo Empleado"}
                       </Button>
                     </Box>
                   </Box>

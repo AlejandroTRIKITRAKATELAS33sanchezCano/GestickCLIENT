@@ -1,0 +1,52 @@
+[
+  {
+    "idMarca": 1,
+    "MarNombre": "Apple",
+    "descripcion": "Tecnología premium"
+  },
+  {
+    "idMarca": 2,
+    "MarNombre": "Samsung",
+    "descripcion": "Electrónica de consumo"
+  },
+  {
+    "idMarca": 3,
+    "MarNombre": "Sony",
+    "descripcion": "Audio y entretenimiento"
+  },
+  {
+    "idMarca": 4,
+    "MarNombre": "HP",
+    "descripcion": "Computadoras e impresoras"
+  },
+  {
+    "idMarca": 5,
+    "MarNombre": "Nike",
+    "descripcion": "Ropa y calzado deportivo"
+  },
+  {
+    "idMarca": 6,
+    "MarNombre": "Adidas",
+    "descripcion": "Artículos deportivos"
+  },
+  {
+    "idMarca": 7,
+    "MarNombre": "Xiaomi",
+    "descripcion": "Tecnología asequible"
+  },
+  {
+    "idMarca": 8,
+    "MarNombre": "Dell",
+    "descripcion": "Equipos de computo"
+  },
+  {
+    "idMarca": 9,
+    "MarNombre": "LG",
+    "descripcion": "Electrodomésticos"
+  },
+  {
+    "idMarca": 10,
+    "MarNombre": "Bose",
+    "descripcion": "Audio de alta calidad"
+  }
+]

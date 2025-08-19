@@ -1,5 +1,5 @@
-import Header from "../components/micro_components/Header";
-import "../../../public/CSS/CSS_Gestick.css";
+import "@assets/CSS/CSS_Gestick.css";
+import Header from "@components/micro_components/Header";
 import Form from "./Form";
 import ClockLoader from "react-spinners/ClockLoader";
 import { useEffect, useState } from "react";
@@ -11,7 +11,7 @@ export default function EditarEmpleado() {
   window.addEventListener("load", () => setLoading(false));
   console.log(loading);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (document.readyState === "complete") {
       setLoading(false);
     }
@@ -28,7 +28,7 @@ export default function EditarEmpleado() {
           <div>
             <Header />
             <section className="pruebas">
-                  <Form />
+              <Form />
             </section>
           </div>
         )}
