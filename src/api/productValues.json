@@ -1,0 +1,50 @@
+[
+    {
+      "idProductos": 1,
+      "PrNombre": "Smartphone X-Pro",
+      "PrPrecio": 8999.99,
+      "PrExistencias": 15,
+      "PrURLimg": "https://images.samsung.com/is/image/samsung/p6pim/mx/sm-a566ezafltm/gallery/mx-galaxy-a56-5g-sm-a566-sm-a566ezafltm-thumb-545619995?$UX_EXT2_PNG$",
+      "PrDescripcion": "Teléfono inteligente con cámara de 108MP y 256GB de almacenamiento"
+    },
+    {
+      "idProductos": 2,
+      "PrNombre": "Laptop EliteBook",
+      "PrPrecio": 22499.50,
+      "PrExistencias": 8,
+      "PrURLimg": "https://cdn.homedepot.com.mx/productos/223608/223608-d.jpg",
+      "PrDescripcion": "Laptop empresarial con i7 11va generación y 16GB RAM"
+    },
+    {
+      "idProductos": 3,
+      "PrNombre": "Auriculares NoiseFree",
+      "PrPrecio": 1299.00,
+      "PrExistencias": 32,
+      "PrURLimg": "https://m.media-amazon.com/images/I/71RjIshY0GL.jpg",
+      "PrDescripcion": "Audífonos con cancelación de ruido y 30h de batería"
+    },
+    {
+      "idProductos": 4,
+      "PrNombre": "SmartWatch FitPlus",
+      "PrPrecio": 2499.99,
+      "PrExistencias": 20,
+      "PrURLimg": "https://i5.walmartimages.com/seo/Smart-Watch-Fits-for-Android-and-iPhone-EEEkit-Fitness-Health-Tracker-Waterproof-Smartwatch-for-Women-Men_819cb65b-8437-4eb3-aba1-ce6513dc8d58.312f5775b50ab18c130fe5a454149fa9.jpeg",
+      "PrDescripcion": "Reloj inteligente con monitor de ritmo cardiaco y GPS"
+    },
+    {
+      "idProductos": 5,
+      "PrNombre": "Tablet KidsEdition",
+      "PrPrecio": 3599.00,
+      "PrExistencias": 12,
+      "PrURLimg": "https://m.media-amazon.com/images/I/71e6oNYhzvL.jpg",
+      "PrDescripcion": "Tablet resistente para niños con control parental"
+    },
+    {
+      "idProductos": 6,
+      "PrNombre": "Teclado Mecánico Pro",
+      "PrPrecio": 899.50,
+      "PrExistencias": 25,
+      "PrURLimg": "https://ignitestore.mx/assets/uploads/sw_rosa_1.png",
+      "PrDescripcion": "Teclado mecánico RGB con switches azules"
+    }
+  ]

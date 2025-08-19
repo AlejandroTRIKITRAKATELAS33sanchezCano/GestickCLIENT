@@ -1,22 +1,20 @@
 import { ResponsiveLine } from "@nivo/line";
 import { useTheme } from "@mui/material";
 import { tokens } from "@views/theme/theme.js";
-import ClockLoader from "react-spinners/ClockLoader.js";
 
 const LineChart = ({
   isCustomLineColors = false,
   isDashboard = false,
-  data = [{ id: "Ventas", data: [], color: "#01a7c2" }], // Added default color
+  data = [{ id: "Ventas", data: [], color: "#01a7c2" }],
 }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  // Ensure data has colors and proper structure
   const chartData =
     Array.isArray(data) && data.length > 0
       ? data.map((series) => ({
           ...series,
-          color: series.color || colors.greenAccent[500], // Default color if not provided
+          color: series.color || colors.greenAccent[500],
         }))
       : [{ id: "Ventas", data: [], color: colors.greenAccent[500] }];
 
