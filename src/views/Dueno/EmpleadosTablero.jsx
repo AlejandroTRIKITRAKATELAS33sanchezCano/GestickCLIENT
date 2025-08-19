@@ -1,18 +1,17 @@
-import Header from "../components/micro_components/Header";
-import "../../../public/CSS/CSS_Gestick.css";
-import "../../../public/CSS/CSS_Gestick.css";
-import HeaderOpcionesAdmin from "../components/micro_components/HeaderOpcionesAdmin.jsx";
+import "@assets/CSS/CSS_Gestick.css";
+import Header from "@components/micro_components/Header";
+import HeaderOpcionesAdmin from "@components/micro_components/HeaderOpcionesAdmin.jsx";
 import ClockLoader from "react-spinners/ClockLoader";
 import { useEffect, useState } from "react";
 import Session from "react-session-api";
-import { deleteEmpleado, getEmp } from "../../api/gestick.api";
+import { deleteEmpleado, getEmp } from "@/api/gestick.api";
 
 export default function EmpleadosTablero() {
   const [loading, setLoading] = useState(true);
   const [table, setTable] = useState([]);
 
   async function updateData() {
-    const {data} = await getEmp({ idAdmin: Session.get("id") });
+    const { data } = await getEmp({ idAdmin: Session.get("id") });
     setTable(data);
   }
 
@@ -53,11 +52,17 @@ export default function EmpleadosTablero() {
                         <h2>
                           {emp.EmNombre} {emp.EmApat} {emp.EmAmat}
                         </h2>
-                        <a href={`/EditarEmpleado/${idEmpleado}`} className="saber-mas-E">
+                        <a
+                          href={`/EditarEmpleado/${idEmpleado}`}
+                          className="saber-mas-E">
                           Editar
                         </a>
-                        <button className="saber-mas-E"
-                        onClick={()=>{deleteEmpleado({idEmpleado});setTimeout(updateData,300);}}>
+                        <button
+                          className="saber-mas-E"
+                          onClick={() => {
+                            deleteEmpleado({ idEmpleado });
+                            setTimeout(updateData, 300);
+                          }}>
                           Borrar
                         </button>
                       </div>
