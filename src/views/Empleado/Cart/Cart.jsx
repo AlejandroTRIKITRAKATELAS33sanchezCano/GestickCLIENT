@@ -3,85 +3,67 @@ import { useEffect, useState } from "react";
 import Header from "@components/micro_components/Header.jsx";
 import Camara from "@components/micro_components/Camara.jsx";
 import SearchComponent from "@components/micro_components/SearchComponent";
-// import ClockLoader from "react-spinners/ClockLoader";
 import Session from "react-session-api";
-import { getProducts, procesSale } from "@/api/gestick.api";
+import Products from "@/api/productValues.json";
 
-///Lista de productos en el carrito.
+// Lista de productos en el carrito.
 let codeCart = [];
 
 function Cart() {
-  if (Session.get("type") === undefined || Session.get("type") === null) {
-    window.location.href = "http://localhost:5173/loginEmpleado";
-  }
+  const [carrito, setCarrito] = useState([]); // Productos seleccionados para vender
+  const [table, setTable] = useState([]); // Productos de la base de datos
 
-  const [carrito, setCarrito] = useState([]); ///Los productos seleccionados para vender.
-  const [table, setTable] = useState([]); ///Los productos de la base de datos///
-
-  ///Función para renderizar el carrito.
+  // Función para renderizar el carrito
   function renderCart(obj, add) {
-    carrito.splice(0, carrito.length);
+    const newCarrito = [...carrito];
+
     if (add) {
       codeCart.push(obj);
     } else {
-      codeCart = codeCart.filter((item) => item.idProductos != obj.idProductos);
+      codeCart = codeCart.filter(
+        (item) => item.idProductos !== obj.idProductos
+      );
     }
 
-    const cart = new Set();
+    const cartMap = new Map();
     codeCart.forEach((item) => {
-      cart.add(JSON.stringify(item));
-    });
-
-    cart.forEach((item) => {
-      var quant = 0;
-      const product = JSON.parse(item);
-      codeCart.forEach((prod) => {
-        quant += prod.idProductos === product.idProductos ? 1 : 0;
-      });
-      product.quant = quant;
-
-      carrito.push(product);
-    });
-
-    setCarrito([...carrito]);
-  }
-
-  ///Función para calcular el precio total.
-  function totalPrice() {
-    var totalPrice = 0;
-    codeCart.forEach((item) => {
-      totalPrice += parseInt(item.PrPrecio);
-    });
-    const suma = totalPrice.toFixed(2);
-    return suma;
-  }
-
-  ///Función para obtener las existencias de un producto que están en el carrito.
-  function getExistences(id) {
-    var total = 0;
-    codeCart.forEach((item) => {
-      total += item.idProductos === id ? 1 : 0;
-    });
-    return total;
-  }
-
-  ///Función para actualizar el carrito;
-  async function updateData() {
-    const { data } = await getProducts({
-      idAdmin: Session.get(Session.get("type") == 1 ? "id" : "idAdmin"),
-    });
-    console.log(data);
-    data.forEach((item, index) => {
-      if (item.PrExistencias === 0) {
-        data.splice(index, 1);
-        data.splice(data.length, 0, item);
+      if (cartMap.has(item.idProductos)) {
+        cartMap.get(item.idProductos).count++;
+      } else {
+        cartMap.set(item.idProductos, { ...item, count: 1 });
       }
     });
-    setTable(data);
+
+    setCarrito(Array.from(cartMap.values()));
   }
 
+  // Función para calcular el precio total
+  function totalPrice() {
+    return codeCart
+      .reduce((total, item) => total + parseFloat(item.PrPrecio), 0)
+      .toFixed(2);
+  }
+
+  // Función para obtener las existencias en el carrito
+  function getExistences(id) {
+    return codeCart.filter((item) => item.idProductos === id).length;
+  }
+
+  // Función para "simular" la venta
+  function simulateSale() {
+    console.log("Venta simulada:", carrito);
+    codeCart = [];
+    setCarrito([]);
+    alert("Venta realizada exitosamente (simulación)");
+  }
+
+  // Cargar productos desde el JSON al montar el componente
   useEffect(() => {
-    updateData();
+    // Ordenar productos (los con 0 existencias al final)
+    const sortedProducts = [...Products].sort((a, b) =>
+      a.PrExistencias === 0 ? 1 : b.PrExistencias === 0 ? -1 : 0
+    );
+    setTable(sortedProducts);
   }, []);
 
   return (
@@ -100,13 +82,11 @@ function Cart() {
                   <li
                     className="list-group-item text-right"
                     key={item.idProductos}>
-                    {item.PrNombre} X {item.quant} - ${item.PrPrecio}
+                    {item.PrNombre} X {item.count} - ${item.PrPrecio}
                     <button
                       id="btnCarrito"
                       className="btn-remover"
-                      onClick={() => {
-                        renderCart(item, false);
-                      }}>
+                      onClick={() => renderCart(item, false)}>
                       X
                     </button>
                   </li>
@@ -118,35 +98,14 @@ function Cart() {
               Total: $<span id="total">{totalPrice()}</span>
             </p>
 
-            <button
-              id="btnCarrito"
-              className="btn-sell"
-              onClick={async () => {
-                console.log(carrito);
-                const { data } = await procesSale({
-                  carrito,
-                  total: totalPrice(),
-                  id: Session.get("id"),
-                  idAdmin: Session.get(
-                    Session.get("type") == 1 ? "id" : "idAdmin"
-                  ),
-                });
-                if (data.message) {
-                  console.log(data.error);
-                } else {
-                  console.log(data);
-                  codeCart.splice(0, codeCart.length);
-                  setCarrito([]);
-                  setTimeout(updateData, 30);
-                }
-              }}>
+            <button id="btnCarrito" className="btn-sell" onClick={simulateSale}>
               Vender
             </button>
             <button
               id="btnCarrito"
               className="btn-delete"
               onClick={() => {
-                codeCart.splice(0, codeCart.length);
+                codeCart = [];
                 setCarrito([]);
               }}>
               Cancelar todo
@@ -155,7 +114,7 @@ function Cart() {
 
           <main id="items" className="col-sm-8 row">
             {table.length === 0 ? (
-              <h1>No hay ningún producto registrado en el inventario</h1>
+              <h1>Cargando productos...</h1>
             ) : (
               <SearchComponent
                 renderCart={renderCart}
